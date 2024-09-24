@@ -1,0 +1,26 @@
+dn: ou=groups,dc=hashicorp,dc=vault
+objectClass: organizationalunit
+objectClass: top
+ou: groups
+description: groups of users
+
+dn: ou=users,dc=hashicorp,dc=vault
+objectClass: organizationalunit
+objectClass: top
+ou: users
+description: users
+
+dn: cn=dev,ou=groups,dc=hashicorp,dc=vault
+objectClass: groupofnames
+objectClass: top
+description: testing group for dev
+cn: dev
+member: cn=alice,ou=users,dc=hashicorp,dc=vault
+
+dn: cn=alice,ou=users,dc=hashicorp,dc=vault
+objectClass: person
+objectClass: top
+cn: learn
+sn: learn
+memberOf: cn=dev,ou=groups,dc=hashicorp,dc=vault
+userPassword: 1LearnedVault
