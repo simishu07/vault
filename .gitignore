@@ -38,3 +38,8 @@ terraform.rc
 
 .DS_Store
 random-notes
+*.pem
+*.ppk
+*.pub
+*.key
+secrets.txt

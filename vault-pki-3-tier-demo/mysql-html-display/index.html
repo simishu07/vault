@@ -2,24 +2,72 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Display MySQL Data in HTML</title>
+    <title>Display MySQL Users</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            table-layout: fixed; /* Ensures all columns have fixed width */
+        }
+
+        th, td {
+            text-align: center;
+            padding: 12px;
+            word-wrap: break-word; /* Break long words if necessary */
+            white-space: nowrap;   /* Prevents wrapping, text stays in one line */
+            overflow: hidden;      /* Hides overflow text */
+            text-overflow: ellipsis; /* Adds '...' if text overflows */
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-    <h1>User List</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody id="userTable">
-            <!-- Data will be injected here -->
-        </tbody>
-    </table>
+    <div>
+        <h1>MySQL Users</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Host</th>
+                    <th>User</th>
+                    <th>Password Expired</th>
+                    <th>Password Last Changed</th>
+                    <th>Account Locked</th>                     
+                </tr>
+            </thead>
+            <tbody id="userTable">
+                <!-- Data will be injected here -->
+            </tbody>
+        </table>
+    </div>
 
     <script>
         // Fetch data from the Node.js API
@@ -30,9 +78,11 @@
                 data.forEach(user => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                        <td>${user.id}</td>
-                        <td>${user.name}</td>
-                        <td>${user.email}</td>
+                        <td>${user.Host}</td>
+                        <td>${user.User}</td>
+                        <td>${user.password_expired}</td>
+                        <td>${user.password_last_changed}</td>
+                        <td>${user.account_locked}</td>                         
                     `;
                     userTable.appendChild(row);
                 });
